@@ -33,5 +33,17 @@ namespace TCGPlayerAddressLabel.Properties {
                 this["ReturnAddress"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PrintReturnLabels {
+            get {
+                return ((bool)(this["PrintReturnLabels"]));
+            }
+            set {
+                this["PrintReturnLabels"] = value;
+            }
+        }
     }
 }

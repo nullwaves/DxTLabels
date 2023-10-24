@@ -45,10 +45,10 @@ namespace TCGPlayerAddressLabel
             _printer.PrintLabel(_label, printer.Name);
         }
 
-        internal void SetLabelAddress(TCGPlayerOrder order)
+        internal void SetLabelAddress(string address)
         {
             var addressObj = _label.GetLabelObject("IAddressObject0");
-            _label.UpdateLabelObject(addressObj, order.Address);
+            _label.UpdateLabelObject(addressObj, address);
         }
 
         public BitmapImage render()

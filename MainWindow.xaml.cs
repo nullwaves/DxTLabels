@@ -68,7 +68,7 @@ namespace TCGPlayerAddressLabel
         private void OrdersListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var order = (TCGPlayerOrder)OrdersListBox.SelectedItem; if (order == null) return;
-            myPrinter.SetLabelAddress(order);
+            myPrinter.SetLabelAddress(order.Address);
             image.Source = myPrinter.render();
         }
 
@@ -76,8 +76,13 @@ namespace TCGPlayerAddressLabel
         {
             foreach(TCGPlayerOrder order in myPrinter.Orders)
             {
-                myPrinter.SetLabelAddress(order);
+                myPrinter.SetLabelAddress(order.Address);
                 myPrinter.PrintLabel((IPrinter)printerList.SelectedItem);
+                if (PrintReturnAddressLabels.IsChecked ?? false)
+                {
+                    myPrinter.SetLabelAddress(Settings.Default.ReturnAddress);
+                    myPrinter.PrintLabel((IPrinter) printerList.SelectedItem);
+                }
             }
             MessageBox.Show($"Printed {myPrinter.Orders.orders.Count} labels.", Title, MessageBoxButton.OK);
         }

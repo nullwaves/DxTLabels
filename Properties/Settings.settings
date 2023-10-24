@@ -7,5 +7,8 @@
 200 E Randolph Dr Ste 200
 Chicago, IL 60601</Value>
     </Setting>
+    <Setting Name="PrintReturnLabels" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
