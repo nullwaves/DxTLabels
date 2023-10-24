@@ -1,9 +1,11 @@
 ﻿using DymoSDK.Interfaces;
 using Microsoft.Win32;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using TCGPlayerAddressLabel.Properties;
 
 namespace TCGPlayerAddressLabel
 {
@@ -39,6 +41,13 @@ namespace TCGPlayerAddressLabel
             // Orders Binding
             var orderListBinding = new Binding() { Source = myPrinter.Orders.orders };
             OrdersListBox.SetBinding(ItemsControl.ItemsSourceProperty, orderListBinding);
+
+            Settings.Default.PropertyChanged += Default_PropertyChanged;
+        }
+
+        private void Default_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            Settings.Default.Save();
         }
 
         private void LoadAddressesButton_Click(object sender, RoutedEventArgs e)
