@@ -1,10 +1,11 @@
 ﻿using DymoSDK.Interfaces;
 using Microsoft.Win32;
-using System.Diagnostics;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using TCGPlayerAddressLabel.Properties;
 
 namespace TCGPlayerAddressLabel
@@ -85,6 +86,21 @@ namespace TCGPlayerAddressLabel
                 }
             }
             MessageBox.Show($"Printed {myPrinter.Orders.orders.Count} labels.", Title, MessageBoxButton.OK);
+        }
+
+        private void FixAddressButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            var order = (TCGPlayerOrder)OrdersListBox.SelectedItem; if (order == null) return;
+            order.FixAddress();
+            myPrinter.SetLabelAddress(order.Address);
+            image.Source = myPrinter.render();
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.ShowDialog();
         }
     }
 }

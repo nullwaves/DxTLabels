@@ -10,5 +10,11 @@ Chicago, IL 60601</Value>
     <Setting Name="PrintReturnLabels" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="UspsApiUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://secure.shippingapis.com/ShippingAPI.dll</Value>
+    </Setting>
+    <Setting Name="UspsApiUserID" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

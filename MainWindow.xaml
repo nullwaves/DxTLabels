@@ -6,26 +6,23 @@
         xmlns:local="clr-namespace:TCGPlayerAddressLabel"
         xmlns:Properties="clr-namespace:TCGPlayerAddressLabel.Properties" x:Class="TCGPlayerAddressLabel.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="802" ResizeMode="NoResize">
+        Title="DxT Label Assistant" Height="450" Width="802" ResizeMode="NoResize">
     <Grid Loaded="Main_Loaded" Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}">
         <Label x:Name="label" Content="Printer:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label_Copy" Content="Type:" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="PrinterType" HorizontalAlignment="Left" Margin="63,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" IsReadOnly="True"/>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="108" Margin="424,88,0,0" VerticalAlignment="Top" Width="347"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="108" Margin="413,39,0,0" VerticalAlignment="Top" Width="347"/>
         <ComboBox x:Name="printerList" HorizontalAlignment="Left" Margin="63,12,0,0" VerticalAlignment="Top" Width="235" RenderTransformOrigin="0.594,-0.403"/>
         <Button x:Name="LoadAddressesButton" Content="Load Addresses" HorizontalAlignment="Left" Margin="313,13,0,0" VerticalAlignment="Top" Click="LoadAddressesButton_Click"/>
         <ListBox x:Name="OrdersListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,68,0,0" SelectionChanged="OrdersListBox_SelectionChanged" HorizontalAlignment="Left" Width="390" Height="356" VerticalAlignment="Top" />
         <Button x:Name="PrintAllButton" Content="Print All" HorizontalAlignment="Left" Margin="313,39,0,0" VerticalAlignment="Top" Click="PrintAllButton_Click" Width="87"/>
-        <TextBox x:Name="ReturnAddress" Margin="424,6,12,0" TextWrapping="Wrap" Text="{Binding Default.ReturnAddress}" VerticalAlignment="Top" Height="53" AcceptsReturn="True">
-            <TextBox.DataContext>
-                <Properties:Settings/>
-            </TextBox.DataContext>
-        </TextBox>
-        <CheckBox x:Name="PrintReturnAddressLabels" Content="Print Return Labels" HorizontalAlignment="Left" Margin="424,68,0,0" VerticalAlignment="Top" IsChecked="{Binding Default.PrintReturnLabels}">
+        <CheckBox x:Name="PrintReturnAddressLabels" Content="Print Return Labels" HorizontalAlignment="Left" Margin="413,19,0,0" VerticalAlignment="Top" IsChecked="{Binding Default.PrintReturnLabels}">
             <CheckBox.DataContext>
                 <Properties:Settings/>
             </CheckBox.DataContext>
         </CheckBox>
+        <Button x:Name="FixAddressButton" Content="Fix Address" HorizontalAlignment="Left" Margin="413,158,0,0" VerticalAlignment="Top" Click="FixAddressButton_Click" RenderTransformOrigin="0.488,1.002"/>
+        <Button x:Name="SettingsButton" Content="Settings" HorizontalAlignment="Left" Margin="500,158,0,0" VerticalAlignment="Top" Click="SettingsButton_Click"/>
 
     </Grid>
 </Window>

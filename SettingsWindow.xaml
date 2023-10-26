@@ -1,0 +1,53 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TCGPlayerAddressLabel"
+        xmlns:Properties="clr-namespace:TCGPlayerAddressLabel.Properties" x:Class="TCGPlayerAddressLabel.SettingsWindow"
+        mc:Ignorable="d"
+        Title="DxT Label Assistant - Settings" Height="270" Width="358" SizeToContent="Height" ResizeMode="NoResize" Background="#FFF78888">
+    <StackPanel>
+        <GroupBox x:Name="groupBox" Height="100" Header="Address Settings">
+            <GroupBox.Background>
+                <SolidColorBrush Color="#FFA0A0A0" Opacity="0.515"/>
+            </GroupBox.Background>
+            <Grid>
+                <Label x:Name="label" Content="Return Address:" HorizontalAlignment="Left" Margin="8,8,0,0" VerticalAlignment="Top" Foreground="White"/>
+                <TextBox x:Name="ReturnAddress" HorizontalAlignment="Left" Height="55" Margin="106,8,0,0" TextWrapping="Wrap" Text="{Binding Default.ReturnAddress}" VerticalAlignment="Top" Width="230" AcceptsReturn="True">
+                    <TextBox.DataContext>
+                        <Properties:Settings/>
+                    </TextBox.DataContext>
+                </TextBox>
+                <Button x:Name="ValidateReturnAddress" Content="Validate" HorizontalAlignment="Left" Margin="32,39,0,0" VerticalAlignment="Top" Click="ValidateReturnAddress_Click"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="groupBox_Copy" Height="100" Header="USPS API Settings">
+            <GroupBox.Background>
+                <SolidColorBrush Color="#FFA0A0A0" Opacity="0.515"/>
+            </GroupBox.Background>
+            <Grid>
+                <Label x:Name="label1" Content="API URL:" HorizontalAlignment="Left" Margin="8,8,0,0" VerticalAlignment="Top" Foreground="White"/>
+                <TextBox x:Name="USPSApiURL" HorizontalAlignment="Left" Height="20" Margin="68,11,0,0" TextWrapping="Wrap" Text="{Binding Default.UspsApiUrl}" VerticalAlignment="Top" Width="268">
+                    <TextBox.DataContext>
+                        <Properties:Settings/>
+                    </TextBox.DataContext>
+                </TextBox>
+                <Label x:Name="label1_Copy" Content="API User ID:" HorizontalAlignment="Left" Margin="8,36,0,0" VerticalAlignment="Top" Foreground="White"/>
+                <TextBox x:Name="USPSApiUserID" HorizontalAlignment="Left" Height="20" Margin="85,39,0,0" TextWrapping="Wrap" Text="{Binding Default.UspsApiUserID}" VerticalAlignment="Top" Width="251">
+                    <TextBox.DataContext>
+                        <Properties:Settings/>
+                    </TextBox.DataContext>
+                </TextBox>
+            </Grid>
+        </GroupBox>
+        <Button x:Name="SaveSettings" Content="Save" HorizontalAlignment="Right" Margin="0,10,10,10" BorderBrush="#FF0061FF" Foreground="#FFFF0303" FontSize="20" FontFamily="Comic Sans MS" Click="SaveSettings_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFFC700"/>
+                    <GradientStop Color="#FF00FFED" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+    </StackPanel>
+</Window>

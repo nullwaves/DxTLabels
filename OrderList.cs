@@ -10,11 +10,7 @@ namespace TCGPlayerAddressLabel
         public string OrderNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string PostalCode { get; set; }
+        private USPSAddress _address;
         public string Country { get; set; }
         public string OrderDate { get; set; }
         public string ProductWeight { get; set; }
@@ -29,11 +25,19 @@ namespace TCGPlayerAddressLabel
             OrderNumber = orderNumber;
             FirstName = firstName;
             LastName = lastName;
-            Address1 = address1;
-            Address2 = address2;
-            City = city;
-            State = state;
-            PostalCode = postalCode;
+            var zip5 = postalCode.Length > 5 ? postalCode.Substring(0, 5) : postalCode;
+            var zip4 = postalCode.Length > 9 ? postalCode.Substring(6) : "";
+            _address = new USPSAddress()
+            {
+                ID = 0,
+                Address2 = address1, // USPS interprets the suite/apt as Line 1
+                Address1 = address2, // and number/street as Line 2
+                City = city,
+                State = state,
+                Zip4 = zip4,
+                Zip5 = zip5,
+
+            };
             Country = country;
             OrderDate = orderDate;
             ProductWeight = productWeight;
@@ -49,10 +53,11 @@ namespace TCGPlayerAddressLabel
             get
             {
                 return $"{FirstName} {LastName}\n" +
-                    $"{Address1} {Address2}\n" +
-                    $"{City}, {State} {PostalCode}";
+                    $"{_address}";
             }
         }
+
+        public bool FixAddress() => _address.FixAddress();
 
         public override string ToString()
         {

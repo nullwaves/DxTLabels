@@ -45,5 +45,29 @@ namespace TCGPlayerAddressLabel.Properties {
                 this["PrintReturnLabels"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://secure.shippingapis.com/ShippingAPI.dll")]
+        public string UspsApiUrl {
+            get {
+                return ((string)(this["UspsApiUrl"]));
+            }
+            set {
+                this["UspsApiUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UspsApiUserID {
+            get {
+                return ((string)(this["UspsApiUserID"]));
+            }
+            set {
+                this["UspsApiUserID"] = value;
+            }
+        }
     }
 }
