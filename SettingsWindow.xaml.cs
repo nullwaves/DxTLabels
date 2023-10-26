@@ -71,25 +71,7 @@ namespace TCGPlayerAddressLabel
                 }
             }
             address.FixAddress();
-            ReturnAddress.Text = addrLines[0] + Environment.NewLine + address;
+            Settings.Default.ReturnAddress = addrLines[0] + Environment.NewLine + address;
         }
-    }
-
-    public class Converter : IValueConverter
-    {
-        #region IValueConverter Members
-
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            var source = (ImageSource)value;
-            return new Rect(0, 0, source.Width, source.Height);
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
     }
 }
