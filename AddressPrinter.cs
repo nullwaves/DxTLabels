@@ -64,5 +64,13 @@ namespace TCGPlayerAddressLabel
                 return bitmapimage;
             }
         }
+
+        internal void FixAllAddresses()
+        {
+            foreach (var order in Orders.orders)
+            {
+                order.FixAddress();
+            }
+        }
     }
 }

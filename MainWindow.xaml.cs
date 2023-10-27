@@ -1,11 +1,9 @@
 ﻿using DymoSDK.Interfaces;
 using Microsoft.Win32;
-using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Media;
 using TCGPlayerAddressLabel.Properties;
 
 namespace TCGPlayerAddressLabel
@@ -63,6 +61,16 @@ namespace TCGPlayerAddressLabel
                 filePath = openFileDialog.FileName;
                 myPrinter.LoadAddresses(filePath);
                 OrdersListBox.Items.Refresh();
+                var fixAddresses = MessageBox.Show(
+                    "Attempt to fix all addresses?"
+                    , "Address Validation", 
+                    MessageBoxButton.YesNo, 
+                    MessageBoxImage.Question
+                    );
+                if (fixAddresses == MessageBoxResult.Yes)
+                {
+                    myPrinter.FixAllAddresses();
+                }
             }
         }
 
