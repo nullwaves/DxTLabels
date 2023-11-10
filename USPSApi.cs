@@ -45,16 +45,20 @@ namespace TCGPlayerAddressLabel
             var result = new USPSApi(Settings.Default.UspsApiUrl).Request(USPSApi.Endpoint.VERIFY, request);
             if (result != null)
             {
-                var addressElement = result.Descendants("Address").First();
-                Address1 = GetXMLElement(addressElement, "Address1");
-                Address2 = GetXMLElement(addressElement, "Address2");
-                City = GetXMLElement(addressElement, "City");
-                State = GetXMLElement(addressElement, "State");
-                Zip5 = GetXMLElement(addressElement, "Zip5");
-                Zip4 = GetXMLElement(addressElement, "Zip4");
-                return true;
+                if (result.Descendants("Address").Any())
+                {
+                    var addressElement = result.Descendants("Address").First();
+                    Address1 = GetXMLElement(addressElement, "Address1");
+                    Address2 = GetXMLElement(addressElement, "Address2");
+                    City = GetXMLElement(addressElement, "City");
+                    State = GetXMLElement(addressElement, "State");
+                    Zip5 = GetXMLElement(addressElement, "Zip5");
+                    Zip4 = GetXMLElement(addressElement, "Zip4");
+                    return true;
+                }
+                Debug.WriteLine(result.ToString());
             }
-            else return false;
+            return false;
         }
 
         internal static string GetXMLElement(XElement element, string name)
@@ -112,7 +116,7 @@ namespace TCGPlayerAddressLabel
             try
             {
                 var url = $"{_url}?{_endpoints[endpoint].Target}&XML=" + request;
-                Debug.WriteLine(url);
+                //Debug.WriteLine(url);
                 var client = new WebClient();
                 var response = client.DownloadString(url);
 
