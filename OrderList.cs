@@ -88,7 +88,7 @@ namespace TCGPlayerAddressLabel
             while (!handle.EndOfStream)
             {
                 line = handle.ReadLine();
-                line = line.Replace("\"", "");
+                line = line.Replace("\"", "").Replace("#", "UNIT ");
                 var data = line.Split(',');
                 if (data.Length >= 14)
                 {
