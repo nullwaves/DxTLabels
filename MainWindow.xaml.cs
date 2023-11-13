@@ -1,12 +1,14 @@
 ﻿using DymoSDK.Interfaces;
 using Microsoft.Win32;
+using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using TCGPlayerAddressLabel.Properties;
+using DxTLabel.Properties;
 
-namespace TCGPlayerAddressLabel
+namespace DxTLabel
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -42,6 +44,21 @@ namespace TCGPlayerAddressLabel
             OrdersListBox.SetBinding(ItemsControl.ItemsSourceProperty, orderListBinding);
 
             Settings.Default.PropertyChanged += Default_PropertyChanged;
+
+            // Process args
+            var args = Environment.GetCommandLineArgs();
+            if (args.Length > 1)
+            {
+                var file = args[1];
+                try
+                {
+                    myPrinter.Orders.LoadFromFile(file);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to load addresses from \"{file}\".{Environment.NewLine}Exception: {ex}");
+                }
+            }
         }
 
         private void Default_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

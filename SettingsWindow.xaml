@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TCGPlayerAddressLabel"
-        xmlns:Properties="clr-namespace:TCGPlayerAddressLabel.Properties" x:Class="TCGPlayerAddressLabel.SettingsWindow"
+        xmlns:local="clr-namespace:DxTLabel"
+        xmlns:Properties="clr-namespace:DxTLabel.Properties" x:Class="DxTLabel.SettingsWindow"
         mc:Ignorable="d"
         Title="DxT Label Assistant - Settings" Height="270" Width="358" SizeToContent="Height" ResizeMode="NoResize" Background="#FFF78888">
     <StackPanel>

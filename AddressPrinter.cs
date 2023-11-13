@@ -5,9 +5,11 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace TCGPlayerAddressLabel
+namespace DxTLabel
 {
     public class AddressPrinter
     {
@@ -24,7 +26,15 @@ namespace TCGPlayerAddressLabel
             Printers = _printer.GetPrinters().Result.ToArray();
             Orders = new OrderList();
 
-            _label.LoadLabelFromFilePath("default.dymo");
+            try
+            {
+                _label.LoadLabelFromFilePath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\default.dymo");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show($"Exception while loading label: {ex}", "Exception!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         public void LoadAddresses(string filePath)

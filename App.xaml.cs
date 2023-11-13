@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace TCGPlayerAddressLabel
+namespace DxTLabel
 {
     /// <summary>
     /// Interaction logic for App.xaml

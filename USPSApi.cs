@@ -5,9 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Xml.Linq;
-using TCGPlayerAddressLabel.Properties;
+using DxTLabel.Properties;
 
-namespace TCGPlayerAddressLabel
+namespace DxTLabel
 {
     public class USPSAddress
     {
@@ -45,18 +45,17 @@ namespace TCGPlayerAddressLabel
             var result = new USPSApi(Settings.Default.UspsApiUrl).Request(USPSApi.Endpoint.VERIFY, request);
             if (result != null)
             {
-                if (result.Descendants("Address").Any())
-                {
-                    var addressElement = result.Descendants("Address").First();
-                    Address1 = GetXMLElement(addressElement, "Address1");
-                    Address2 = GetXMLElement(addressElement, "Address2");
-                    City = GetXMLElement(addressElement, "City");
-                    State = GetXMLElement(addressElement, "State");
-                    Zip5 = GetXMLElement(addressElement, "Zip5");
-                    Zip4 = GetXMLElement(addressElement, "Zip4");
-                    return true;
-                }
-                Debug.WriteLine(result.ToString());
+                if (!result.Descendants("Address").Any() ||
+                    result.Descendants("Error").Any())
+                    return false;
+                var addressElement = result.Descendants("Address").First();
+                Address1 = GetXMLElement(addressElement, "Address1");
+                Address2 = GetXMLElement(addressElement, "Address2");
+                City = GetXMLElement(addressElement, "City");
+                State = GetXMLElement(addressElement, "State");
+                Zip5 = GetXMLElement(addressElement, "Zip5");
+                Zip4 = GetXMLElement(addressElement, "Zip4");
+                return true;
             }
             return false;
         }
@@ -86,7 +85,7 @@ namespace TCGPlayerAddressLabel
     internal class USPSApiEndpoint
     {
         public string Target { get; set; }
-        public USPSApiEndpoint(string target) 
+        public USPSApiEndpoint(string target)
         {
             Target = target;
         }
@@ -106,7 +105,7 @@ namespace TCGPlayerAddressLabel
             { Endpoint.VERIFY, new USPSApiEndpoint("API=Verify") },
         };
 
-        public USPSApi(string apiUrl) 
+        public USPSApi(string apiUrl)
         {
             _url = apiUrl;
         }
@@ -116,7 +115,6 @@ namespace TCGPlayerAddressLabel
             try
             {
                 var url = $"{_url}?{_endpoints[endpoint].Target}&XML=" + request;
-                //Debug.WriteLine(url);
                 var client = new WebClient();
                 var response = client.DownloadString(url);
 

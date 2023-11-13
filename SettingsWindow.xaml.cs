@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
-using TCGPlayerAddressLabel.Properties;
+using DxTLabel.Properties;
 
-namespace TCGPlayerAddressLabel
+namespace DxTLabel
 {
     /// <summary>
     /// Interaction logic for SettingsWindow.xaml
